@@ -5,7 +5,7 @@ local engine = EngineFactory.new()
     :set_fullscreen(false)
     :create()
 
-engine:prefetch({ "blob/matrix.avif" })
+-- engine:prefetch({ "blob/matrix.avif" })
 
 local angle = 0
 local alpha = 0
