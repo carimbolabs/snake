@@ -1,7 +1,7 @@
 local engine = EngineFactory.new()
     :set_title("Carimbo")
-    :set_width(1280)
-    :set_height(720)
+    :set_width(854)
+    :set_height(480)
     :set_fullscreen(false)
     :create()
 
@@ -14,8 +14,8 @@ local direction = 0
 local me = engine:spawn()
 
 me.pixmap = "blob/matrix.avif"
-me.x = (1280 // 2) - (me.width // 2)
-me.y = (720 // 2) - (me.height // 2)
+me.x = (854 // 2) - (me.width // 2)
+me.y = (480 // 2) - (me.height // 2)
 
 me:on_update(function(self)
   if engine:is_keydown(KeyEvent.w) then
