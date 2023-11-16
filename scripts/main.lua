@@ -5,7 +5,7 @@ local engine = EngineFactory.new()
     :set_fullscreen(false)
     :create()
 
--- engine:prefetch({ "blob/matrix.avif" })
+engine:prefetch({ "blob/matrix.avif", "blob/deitzis.ogg" })
 
 local angle = 0
 local alpha = 0
@@ -34,6 +34,10 @@ me:on_update(function(self)
     self.x = self.x + 1
   end
 
+  if engine:is_keydown(KeyEvent.space) then
+    me:play("blob/deitzis.ogg")
+  end
+
   angle = angle + 1
   if angle > 360 then
     angle = 0
@@ -57,6 +61,12 @@ me:on_update(function(self)
 
   self.alpha = alpha
 end)
+
+-- me:play_sound("blob/alarm.ogg")
+
+-- local garbage = engine:spawn()
+-- engine:destroy(garbage)
+-- garbage = nil
 
 local gc = engine:spawn()
 
