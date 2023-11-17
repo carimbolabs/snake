@@ -54,7 +54,7 @@ snake:on_update(function(self)
 
   -- if elapsed N seconds, walk N pixels
 
-  local now = get_ticks()
+  local now = engine:ticks()
   if now - elapsed > 500 then
     elapsed = now
     if direction == Directions.NORTH then
