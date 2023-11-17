@@ -52,19 +52,19 @@ snake:on_update(function(self)
   end
 
   if direction == Directions.NORTH then
-    self:move(0, -16)
+    self:move(0, -1)
   end
 
   if direction == Directions.WEST then
-    self:move(-16, 0)
+    self:move(-1, 0)
   end
 
   if direction == Directions.SOUTH then
-    self:move(0, 16)
+    self:move(0, 1)
   end
 
   if direction == Directions.EAST then
-    self:move(16, 0)
+    self:move(1, 0)
   end
 end)
 
