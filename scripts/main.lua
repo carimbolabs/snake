@@ -15,6 +15,7 @@ local Directions = {
 local change_to = nil
 local direction = Directions.SOUTH
 local snake = engine:spawn()
+local elapsed = 0
 
 snake.pixmap = "blob/01.avif"
 
@@ -51,20 +52,26 @@ snake:on_update(function(self)
     direction = Directions.EAST
   end
 
-  if direction == Directions.NORTH then
-    self:move(0, -1)
-  end
+  -- if elapsed N seconds, walk N pixels
 
-  if direction == Directions.WEST then
-    self:move(-1, 0)
-  end
+  local now = get_ticks()
+  if now - elapsed > 500 then
+    elapsed = now
+    if direction == Directions.NORTH then
+      self:move(0, -64)
+    end
 
-  if direction == Directions.SOUTH then
-    self:move(0, 1)
-  end
+    if direction == Directions.WEST then
+      self:move(-64, 0)
+    end
 
-  if direction == Directions.EAST then
-    self:move(1, 0)
+    if direction == Directions.SOUTH then
+      self:move(0, 64)
+    end
+
+    if direction == Directions.EAST then
+      self:move(64, 0)
+    end
   end
 end)
 
