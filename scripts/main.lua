@@ -5,6 +5,8 @@ local engine = EngineFactory.new()
     :set_fullscreen(false)
     :create()
 
+engine:prefetch({ "blob/01.avif" })
+
 local Directions = {
   NORTH = "north",
   SOUTH = "south",
