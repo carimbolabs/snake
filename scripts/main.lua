@@ -5,7 +5,7 @@ local engine = EngineFactory.new()
     :set_fullscreen(false)
     :create()
 
-engine:prefetch({ "blob/01.avif" })
+engine:prefetch({ "blobs/01.avif", "blobs/deitzis.ogg" })
 
 local Directions = {
   NORTH = "north",
@@ -16,12 +16,12 @@ local Directions = {
 
 local change_to = nil
 local direction = Directions.SOUTH
-local snake = engine:spawn()
+local wiggler = engine:spawn()
 local elapsed = 0
 
-snake.pixmap = "blob/01.avif"
+wiggler.pixmap = "blobs/01.avif"
 
-snake:on_update(function(self)
+wiggler:on_update(function(self)
   if engine:is_keydown(KeyEvent.w) then
     change_to = Directions.NORTH
   end
@@ -36,6 +36,10 @@ snake:on_update(function(self)
 
   if engine:is_keydown(KeyEvent.d) then
     change_to = Directions.EAST
+  end
+
+  if engine:is_keydown(KeyEvent.space) then
+    wiggler.play = "blobs/deitzis.ogg"
   end
 
   if change_to == Directions.NORTH and direction ~= Directions.SOUTH then
@@ -53,8 +57,6 @@ snake:on_update(function(self)
   if change_to == Directions.EAST and direction ~= Directions.WEST then
     direction = Directions.EAST
   end
-
-  -- if elapsed N seconds, walk N pixels
 
   local now = engine:ticks()
   if now - elapsed > 500 then
