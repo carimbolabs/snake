@@ -39,7 +39,7 @@ wiggler:on_update(function(self)
   end
 
   if engine:is_keydown(KeyEvent.space) then
-    wiggler.play = "blobs/deitzis.ogg"
+    wiggler:play("blobs/deitzis.ogg")
   end
 
   if change_to == Directions.NORTH and direction ~= Directions.SOUTH then
