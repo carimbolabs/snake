@@ -14,6 +14,9 @@ engine:prefetch({
   "blobs/blue.avif",
   "blobs/indigo.avif",
   "blobs/violet.avif",
+  "blobs/apple1.avif",
+  "blobs/apple2.avif",
+  "blobs/apple3.avif",
 })
 
 local Directions = {
@@ -31,6 +34,11 @@ local elapsed = 0
 
 local head = engine:spawn()
 head.pixmap = "blobs/head.avif"
+
+local apple = engine:spawn()
+local apples = { "blobs/apple1.avif", "blobs/apple2.avif", "blobs/apple3.avif" }
+local appleIndex = 1
+local appleElapsed = 0
 
 local colors = { "red", "orange", "yellow", "green", "blue", "indigo", "violet" }
 for _, color in ipairs(colors) do
@@ -97,6 +105,31 @@ head:on_update(function(self)
     while #queue > #segments + 1 do
       table.remove(queue)
     end
+  end
+end)
+
+apple:on_update(function(self)
+  local now = engine:ticks()
+  if now - appleElapsed > 200 then
+    appleIndex = appleIndex + 1
+    if appleIndex > #apples then appleIndex = 1 end
+    appleElapsed = now
+  end
+
+  local localApple = apples[appleIndex]
+  apple.pixmap = localApple
+
+  apple.x = ((apple.width - 64) / 2) + 100
+  apple.y = ((apple.height - 64) / 2) + 100
+end)
+
+local gc = engine:spawn()
+
+gc:on_update(function(self)
+  if collectgarbage("count") / 1024 > 8 then
+    collectgarbage("collect")
+  else
+    collectgarbage("step", 1)
   end
 end)
 
