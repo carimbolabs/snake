@@ -6,17 +6,17 @@ local engine = EngineFactory.new()
     :create()
 
 engine:prefetch({
-  "blobs/head.avif",
-  "blobs/red.avif",
-  "blobs/orange.avif",
-  "blobs/yellow.avif",
-  "blobs/green.avif",
-  "blobs/blue.avif",
-  "blobs/indigo.avif",
-  "blobs/violet.avif",
-  "blobs/apple1.avif",
-  "blobs/apple2.avif",
-  "blobs/apple3.avif",
+  "blobs/head.png",
+  "blobs/red.png",
+  "blobs/orange.png",
+  "blobs/yellow.png",
+  "blobs/green.png",
+  "blobs/blue.png",
+  "blobs/indigo.png",
+  "blobs/violet.png",
+  "blobs/apple1.png",
+  "blobs/apple2.png",
+  "blobs/apple3.png",
 })
 
 local Directions = {
@@ -33,17 +33,17 @@ local queue = {}
 local elapsed = 0
 
 local head = engine:spawn()
-head.pixmap = "blobs/head.avif"
+head.pixmap = "blobs/head.png"
 
 local apple = engine:spawn()
-local apples = { "blobs/apple1.avif", "blobs/apple2.avif", "blobs/apple3.avif" }
+local apples = { "blobs/apple1.png", "blobs/apple2.png", "blobs/apple3.png" }
 local appleIndex = 1
 local appleElapsed = 0
 
 local colors = { "red", "orange", "yellow", "green", "blue", "indigo", "violet" }
 for _, color in ipairs(colors) do
   local segment = engine:spawn()
-  segment.pixmap = "blobs/" .. color .. ".avif"
+  segment.pixmap = "blobs/" .. color .. ".png"
 
   segment.x = -512
   segment.y = -512
